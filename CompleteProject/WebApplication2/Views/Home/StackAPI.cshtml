@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "StackAPI";
+}
+
+<!--https://api.stackexchange.com/docs-->
+<br />
+<input type="button" value="Load Questions" onclick="ShowList()" />
+<br />
+<span id="spn-loading-1"></span>
+<br />
+<h2>StackAPI</h2>
+<table border="1" style="border-collapse:collapse;" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Question ID</th>
+            <th>Author</th>
+            <th>Answered</th>
+            <th>Question</th>
+        </tr>
+    </thead>
+    <tbody id="tb"></tbody>
+</table>
+<h2>Details</h2>
+<br />
+<br />
+<table border="1" style="border-collapse:collapse;" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Answer ID</th>
+            <th>Author</th>
+        </tr>
+    </thead>
+    <tbody id="tb-sub"></tbody>
+</table>
+
+
+@section scripts{
+    <script type="text/javascript">
+        function Ajax(action, jsn, call_back) {
+            $.ajax({
+                method: "get",
+                url: action,
+                data: jsn,
+                success: function (data) {
+                    call_back(data);
+                }
+            });
+        }
+        function ShowAnswers(ctrl) {
+            //https://api.stackexchange.com/2.3/questions/76700016/answers?key=U4DMV*8nvpm3EOpvf69Rxw((&site=stackoverflow
+            //$('#spn-loading-2').text('Loading....');
+            ctrl.nextElementSibling.innerText=('Loading....')
+            Ajax('https://api.stackexchange.com/2.3/questions/' + ctrl.innerText + '/answers?key=U4DMV*8nvpm3EOpvf69Rxw((&site=stackoverflow', null, function (r) {
+                ctrl.nextElementSibling.innerText=('')
+                if (r != null) {
+                    if (r != null) {
+                        var tb = $('#tb-sub').html('');
+                        for (var i = 0; i < r.items.length; i++) {
+                            var c = r.items[i];
+                            var htm = '<tr>';
+                            htm += '<td>' + c.answer_id + '</td>'
+                            htm += '<td>' + c.owner.display_name + '</td>'
+                            htm += '</tr>';
+                            tb.append(htm);
+                        }
+                    }
+                }
+            });
+        }
+        function Void() { }
+        function ShowList() {
+            $('#spn-loading-1').text('Loading....');
+            Ajax('https://api.stackexchange.com/2.3/questions?key=U4DMV*8nvpm3EOpvf69Rxw((&site=stackoverflow', null, function (r) {
+                $('#spn-loading-1').text('');
+                if (r != null) {
+                    if (r != null) {
+                        var tb = $('#tb').html('');
+
+                        for (var i = 0; i < r.items.length; i++) {
+                            var c = r.items[i];
+                            var htm = '<tr>';
+                            if (c.answer_count == 0) htm += '<td>' + c.question_id + '</td>'
+                            else {
+                                htm += '<td><a style="color:red" href="javascript:Void()" onClick="ShowAnswers(this)">';
+                                htm+=''+ c.question_id +'</a><span></span></td>';
+                            }
+                            htm += '<td>' + c.owner.display_name + '</td>'
+                            htm += '<td style="text-align:center">' + c.answer_count + '</td>'
+                            htm += '<td>' + c.title + '</td>'
+                            htm += '</tr>';
+                            tb.append(htm);
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+}    

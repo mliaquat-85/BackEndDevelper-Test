@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LIB_LIAQUATModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TBL_AUTHOR">
+    <Key>
+      <PropertyRef Name="AUTHOR_ID" />
+    </Key>
+    <Property Name="AUTHOR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AUTHOR_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TBL_BOOK">
+    <Key>
+      <PropertyRef Name="BOOK_ID" />
+    </Key>
+    <Property Name="BOOK_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AUTHOR_ID" Type="Int32" />
+    <Property Name="CATEGORY_ID" Type="Int32" />
+    <Property Name="BOOK_TITLE" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="BOOK_EDITION" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="BOOK_IBAN_NO" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TBL_CATEGORY">
+    <Key>
+      <PropertyRef Name="CATEGORY_ID" />
+    </Key>
+    <Property Name="CATEGORY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PARENT_CATEGORY_ID" Type="Int32" />
+    <Property Name="CATEGORY_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="LIB_LIAQUATEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TBL_AUTHOR" EntityType="Self.TBL_AUTHOR" />
+    <EntitySet Name="TBL_BOOK" EntityType="Self.TBL_BOOK" />
+    <EntitySet Name="TBL_CATEGORY" EntityType="Self.TBL_CATEGORY" />
+    <FunctionImport Name="usp_GET_BOOK_LIST" ReturnType="Collection(LIB_LIAQUATModel.usp_GET_BOOK_LIST_Result)" />
+    <FunctionImport Name="usp_GET_CATEGORIES" ReturnType="Collection(LIB_LIAQUATModel.usp_GET_CATEGORIES_Result)">
+      <Parameter Name="CATEGORY_ID" Mode="In" Type="Int32" />
+      <Parameter Name="PARENT_CATEGORY_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="usp_GET_BOOK_LIST_Result">
+    <Property Type="Int32" Name="CATEGORY_ID" Nullable="false" />
+    <Property Type="String" Name="CATEGORY_NAME" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="AUTHOR_NAME" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="BOOK_TITLE" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="BOOK_EDITION" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="BOOK_IBAN_NO" Nullable="true" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="usp_GET_CATEGORIES_Result">
+    <Property Type="Int32" Name="CATEGORY_ID" Nullable="false" />
+    <Property Type="Int32" Name="PARENT_CATEGORY_ID" Nullable="true" />
+    <Property Type="String" Name="CATEGORY_NAME" Nullable="true" MaxLength="150" />
+  </ComplexType>
+</Schema>

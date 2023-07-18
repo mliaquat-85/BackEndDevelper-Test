@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LIB_LIAQUATModelStoreContainer" CdmEntityContainer="LIB_LIAQUATEntities">
+    <EntitySetMapping Name="TBL_AUTHOR">
+      <EntityTypeMapping TypeName="LIB_LIAQUATModel.TBL_AUTHOR">
+        <MappingFragment StoreEntitySet="TBL_AUTHOR">
+          <ScalarProperty Name="AUTHOR_ID" ColumnName="AUTHOR_ID" />
+          <ScalarProperty Name="AUTHOR_NAME" ColumnName="AUTHOR_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_BOOK">
+      <EntityTypeMapping TypeName="LIB_LIAQUATModel.TBL_BOOK">
+        <MappingFragment StoreEntitySet="TBL_BOOK">
+          <ScalarProperty Name="BOOK_ID" ColumnName="BOOK_ID" />
+          <ScalarProperty Name="AUTHOR_ID" ColumnName="AUTHOR_ID" />
+          <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+          <ScalarProperty Name="BOOK_TITLE" ColumnName="BOOK_TITLE" />
+          <ScalarProperty Name="BOOK_EDITION" ColumnName="BOOK_EDITION" />
+          <ScalarProperty Name="BOOK_IBAN_NO" ColumnName="BOOK_IBAN_NO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_CATEGORY">
+      <EntityTypeMapping TypeName="LIB_LIAQUATModel.TBL_CATEGORY">
+        <MappingFragment StoreEntitySet="TBL_CATEGORY">
+          <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+          <ScalarProperty Name="PARENT_CATEGORY_ID" ColumnName="PARENT_CATEGORY_ID" />
+          <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="usp_GET_BOOK_LIST" FunctionName="LIB_LIAQUATModel.Store.usp_GET_BOOK_LIST">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LIB_LIAQUATModel.usp_GET_BOOK_LIST_Result">
+          <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+          <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
+          <ScalarProperty Name="AUTHOR_NAME" ColumnName="AUTHOR_NAME" />
+          <ScalarProperty Name="BOOK_TITLE" ColumnName="BOOK_TITLE" />
+          <ScalarProperty Name="BOOK_EDITION" ColumnName="BOOK_EDITION" />
+          <ScalarProperty Name="BOOK_IBAN_NO" ColumnName="BOOK_IBAN_NO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_GET_CATEGORIES" FunctionName="LIB_LIAQUATModel.Store.usp_GET_CATEGORIES">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LIB_LIAQUATModel.usp_GET_CATEGORIES_Result">
+          <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+          <ScalarProperty Name="PARENT_CATEGORY_ID" ColumnName="PARENT_CATEGORY_ID" />
+          <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

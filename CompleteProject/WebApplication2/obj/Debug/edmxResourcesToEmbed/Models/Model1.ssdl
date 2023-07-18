@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LIB_LIAQUATModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'LIB_LIAQUAT.dbo.TBL_AUTHOR' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TBL_AUTHOR">
+    <Key>
+      <PropertyRef Name="AUTHOR_ID" />
+    </Key>
+    <Property Name="AUTHOR_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AUTHOR_NAME" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'LIB_LIAQUAT.dbo.TBL_BOOK' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TBL_BOOK">
+    <Key>
+      <PropertyRef Name="BOOK_ID" />
+    </Key>
+    <Property Name="BOOK_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AUTHOR_ID" Type="int" />
+    <Property Name="CATEGORY_ID" Type="int" />
+    <Property Name="BOOK_TITLE" Type="nvarchar" MaxLength="150" />
+    <Property Name="BOOK_EDITION" Type="nvarchar" MaxLength="150" />
+    <Property Name="BOOK_IBAN_NO" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'LIB_LIAQUAT.dbo.TBL_CATEGORY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TBL_CATEGORY">
+    <Key>
+      <PropertyRef Name="CATEGORY_ID" />
+    </Key>
+    <Property Name="CATEGORY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PARENT_CATEGORY_ID" Type="int" />
+    <Property Name="CATEGORY_NAME" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <Function Name="usp_GET_BOOK_LIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_GET_CATEGORIES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CATEGORY_ID" Type="int" Mode="In" />
+    <Parameter Name="PARENT_CATEGORY_ID" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="LIB_LIAQUATModelStoreContainer">
+    <EntitySet Name="TBL_AUTHOR" EntityType="Self.TBL_AUTHOR" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TBL_AUTHOR].[AUTHOR_ID] AS [AUTHOR_ID], 
+    [TBL_AUTHOR].[AUTHOR_NAME] AS [AUTHOR_NAME]
+    FROM [dbo].[TBL_AUTHOR] AS [TBL_AUTHOR]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="TBL_BOOK" EntityType="Self.TBL_BOOK" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TBL_BOOK].[BOOK_ID] AS [BOOK_ID], 
+    [TBL_BOOK].[AUTHOR_ID] AS [AUTHOR_ID], 
+    [TBL_BOOK].[CATEGORY_ID] AS [CATEGORY_ID], 
+    [TBL_BOOK].[BOOK_TITLE] AS [BOOK_TITLE], 
+    [TBL_BOOK].[BOOK_EDITION] AS [BOOK_EDITION], 
+    [TBL_BOOK].[BOOK_IBAN_NO] AS [BOOK_IBAN_NO]
+    FROM [dbo].[TBL_BOOK] AS [TBL_BOOK]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="TBL_CATEGORY" EntityType="Self.TBL_CATEGORY" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TBL_CATEGORY].[CATEGORY_ID] AS [CATEGORY_ID], 
+    [TBL_CATEGORY].[PARENT_CATEGORY_ID] AS [PARENT_CATEGORY_ID], 
+    [TBL_CATEGORY].[CATEGORY_NAME] AS [CATEGORY_NAME]
+    FROM [dbo].[TBL_CATEGORY] AS [TBL_CATEGORY]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

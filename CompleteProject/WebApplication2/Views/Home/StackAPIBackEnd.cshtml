@@ -1,0 +1,81 @@
+﻿
+@{
+    var questions = (List<WebApplication2.Models.StackOverFlowQuestionData>)ViewData["Questions"];
+}
+<br />
+<h2>StackAPI (Back-End)</h2>
+<table border="1" style="border-collapse:collapse;" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Question ID</th>
+            <th>Author</th>
+            <th>Answered</th>
+            <th>Question</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var c in questions.items)
+    {
+        <tr>
+            <td>
+                <a style="color:red" href="javascript:Void()" onClick="ShowAnswers(this,@c.AnswerCount)">@c.QuestionID</a>
+                <span></span>
+            </td>
+            <td>@c.owner.UserName</td>
+            <td>@c.AnswerCount</td>
+            <td>@c.Question</td>
+        </tr>
+    }
+    </tbody>
+</table>
+<h2>Details</h2>
+<br />
+<br />
+<table border="1" style="border-collapse:collapse;" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Answer ID</th>
+            <th>Author</th>
+        </tr>
+    </thead>
+    <tbody id="tb-sub"></tbody>
+</table>
+
+
+@section scripts{
+    <script type="text/javascript">
+        function Ajax(action, jsn, call_back) {
+            $.ajax({
+                method: "POST",
+                url: action,
+                data: jsn,
+                success: function (data) {
+                    call_back(data);
+                }
+            });
+        }
+        function ShowAnswers(ctrl, answer_cnt) {
+
+            if (answer_cnt > 0) {
+                ctrl.nextElementSibling.innerText = ('Loading....');
+                Ajax('/Home/GetQuestionAnswers', { QuestionId: ctrl.innerText }, function (res) {
+                    ctrl.nextElementSibling.innerText = ('');
+                    if (r != null) {
+                        if (r != null) {
+                            var tb = $('#tb-sub').html('');
+                            for (var i = 0; i < r.items.length; i++) {
+                                var c = r.items[i];
+                                var htm = '<tr>';
+                                htm += '<td>' + c.AnswerID + '</td>'
+                                htm += '<td>' + c.owner.UserName + '</td>'
+                                htm += '</tr>';
+                                tb.append(htm);
+                            }
+                        }
+                    }
+                });
+            }
+        }
+        function Void() { }
+    </script>
+}    

@@ -1,0 +1,78 @@
+﻿@{
+    var categories = (List<WebApplication2.Models.CategoryInfo>)ViewData["Categories"];
+}
+Category:
+<select style="padding:5px" onchange="CategoryChanged(this)">
+    <option value="0">All</option>
+    @foreach (var c in categories)
+    {
+        <option value="@c.CategortyId">@c.Category</option>
+    }
+</select>
+Sub-Category:
+<select id="ddl-sub-cate" style="padding:5px" onchange="SubCategoryChanged(this)">
+</select>
+<br /><br />
+<table border="1" style="border-collapse:collapse;" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>IBAN</th>
+            <th>Category</th>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Edition</th>
+        </tr>
+    </thead>
+    <tbody id="tb" ></tbody>
+</table>
+
+@section scripts{
+    <script type="text/javascript">
+        function Ajax(action, jsn, call_back) {
+            $.ajax({
+                method: "POST",
+                url: action,
+                data: jsn,
+                success: function (data) {
+                    call_back(data);
+                }
+            });
+        }
+        function CategoryChanged(ctrl) {
+            Ajax('/Home/GetSubCategories', { CategoryId: ctrl.value }, function (res) {
+                if (res != null) {
+                    var sb = $('#ddl-sub-cate').html('<option value="-1">Select</option>')
+                    for (var i = 0; i < res.length; i++) {
+                        var c = res[i];
+                        sb.append('<option value="' + c.CategortyId + '">' + c.Category + '</option> ');
+                    }
+                }
+            });
+        }
+        function GetTD(content) {
+            var td = document.createElement('td');
+            td.innerText = content
+            return td;
+        }
+        function SubCategoryChanged(ctrl) {
+            Ajax('/Home/GetBooks', { CategoryId: ctrl.value }, function (res) {
+                if (res != null) {
+
+                    var sb = document.getElementById('tb');
+
+                    for (var i = 0; i < res.length; i++) {
+                        var c = res[i];
+                        var tr = document.createElement('tr');
+                        tr.appendChild(GetTD(c.IBAN));
+                        tr.appendChild(GetTD(c.Category));
+                        tr.appendChild(GetTD(c.Author));
+                        tr.appendChild(GetTD(c.Title));
+                        tr.appendChild(GetTD(c.Edition));
+
+                        sb.appendChild(tr);
+                    }
+                }
+            });
+        }
+    </script>
+}    
