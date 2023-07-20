@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetQuestions">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetQuestionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetQuestionsResult" type="tns:StackOverFlowQuestionData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="StackOverFlowQuestionData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="items" type="tns:ArrayOfStackOverFlowQuestionItemData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfStackOverFlowQuestionItemData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="StackOverFlowQuestionItemData" nillable="true" type="tns:StackOverFlowQuestionItemData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StackOverFlowQuestionItemData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="tags" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="owner" type="tns:StackOverFlowOwnerInfo" />
+          <s:element minOccurs="1" maxOccurs="1" name="AnswerCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="QuestionID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Question" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StackOverFlowOwnerInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="account_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="user_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="user_type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="profile_image" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="link" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAnswers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="question_id" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAnswersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAnswersResult" type="tns:StackOverFlowAnswerData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="StackOverFlowAnswerData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="items" type="tns:ArrayOfStackOverFlowAnswerItemData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfStackOverFlowAnswerItemData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="StackOverFlowAnswerItemData" nillable="true" type="tns:StackOverFlowAnswerItemData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StackOverFlowAnswerItemData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="tags" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="owner" type="tns:StackOverFlowOwnerInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="QuestionID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AnswerID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetQuestionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetQuestions" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetQuestionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAnswersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAnswers" />
+  </wsdl:message>
+  <wsdl:message name="GetAnswersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAnswersResponse" />
+  </wsdl:message>
+  <wsdl:portType name="StackOverFlowApiSoap">
+    <wsdl:operation name="GetQuestions">
+      <wsdl:input message="tns:GetQuestionsSoapIn" />
+      <wsdl:output message="tns:GetQuestionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAnswers">
+      <wsdl:input message="tns:GetAnswersSoapIn" />
+      <wsdl:output message="tns:GetAnswersSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="StackOverFlowApiSoap" type="tns:StackOverFlowApiSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetQuestions">
+      <soap:operation soapAction="http://tempuri.org/GetQuestions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnswers">
+      <soap:operation soapAction="http://tempuri.org/GetAnswers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="StackOverFlowApiSoap12" type="tns:StackOverFlowApiSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetQuestions">
+      <soap12:operation soapAction="http://tempuri.org/GetQuestions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAnswers">
+      <soap12:operation soapAction="http://tempuri.org/GetAnswers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="StackOverFlowApi">
+    <wsdl:port name="StackOverFlowApiSoap" binding="tns:StackOverFlowApiSoap">
+      <soap:address location="http://localhost:4757/API/StackOverFlowApi.asmx" />
+    </wsdl:port>
+    <wsdl:port name="StackOverFlowApiSoap12" binding="tns:StackOverFlowApiSoap12">
+      <soap12:address location="http://localhost:4757/API/StackOverFlowApi.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

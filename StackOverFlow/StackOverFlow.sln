@@ -3,6 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackOverFlow", "StackOverFlow\StackOverFlow.csproj", "{AD7F3996-C1AC-415A-ADAF-0D5EAA7A76DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsumeService", "ConsumeService\ConsumeService.csproj", "{560754AE-283B-4936-93B3-ADDF95B141C8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AD7F3996-C1AC-415A-ADAF-0D5EAA7A76DA} = {AD7F3996-C1AC-415A-ADAF-0D5EAA7A76DA}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +18,10 @@ Global
 		{AD7F3996-C1AC-415A-ADAF-0D5EAA7A76DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD7F3996-C1AC-415A-ADAF-0D5EAA7A76DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD7F3996-C1AC-415A-ADAF-0D5EAA7A76DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{560754AE-283B-4936-93B3-ADDF95B141C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{560754AE-283B-4936-93B3-ADDF95B141C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{560754AE-283B-4936-93B3-ADDF95B141C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{560754AE-283B-4936-93B3-ADDF95B141C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
