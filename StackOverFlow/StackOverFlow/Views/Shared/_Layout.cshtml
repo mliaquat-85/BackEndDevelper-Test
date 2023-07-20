@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "_Layout";
+}
+
+<html>
+    <head>
+        <script type="text/javascript" src='@Url.Content("~/Contents/jquery.min.js")'></script>
+
+    </head>
+    <body>
+        @RenderBody()
+
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

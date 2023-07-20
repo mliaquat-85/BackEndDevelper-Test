@@ -1,6 +1,6 @@
 ﻿
 @{
-    var questions = (List<WebApplication2.Models.StackOverFlowQuestionData>)ViewData["Questions"];
+    var questions = (StackOverFlow.Models.StackOverFlowQuestionData)ViewData["Questions"];
 }
 <br />
 <h2>StackAPI (Back-End)</h2>
@@ -58,7 +58,7 @@
 
             if (answer_cnt > 0) {
                 ctrl.nextElementSibling.innerText = ('Loading....');
-                Ajax('/Home/GetQuestionAnswers', { QuestionId: ctrl.innerText }, function (res) {
+                Ajax('/Home/GetQuestionAnswers', { QuestionId: ctrl.innerText }, function (r) {
                     ctrl.nextElementSibling.innerText = ('');
                     if (r != null) {
                         if (r != null) {

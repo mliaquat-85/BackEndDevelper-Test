@@ -9,7 +9,7 @@ using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebApplication2.Models
+namespace StackOverFlow.Models
 {
     public class StackOverFlowQuestionData// : ISerializable
     {
@@ -138,6 +138,10 @@ namespace WebApplication2.Models
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Credentials = CredentialCache.DefaultCredentials;
             request.ContentType = "application/json; charset=utf-8";
+            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36";
+            request.KeepAlive = true;
+            request.AutomaticDecompression = DecompressionMethods.Deflate;
+
             object NULL = null;
             using (var response = (HttpWebResponse)request.GetResponse())
             {
