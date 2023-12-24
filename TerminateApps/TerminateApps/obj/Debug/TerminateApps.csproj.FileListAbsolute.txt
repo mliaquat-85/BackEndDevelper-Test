@@ -1,0 +1,6 @@
+C:\Users\Liaquat\Documents\GitHub\mliaquat-85\test\test\TerminateApps\TerminateApps\bin\Debug\TerminateApps.exe.config
+C:\Users\Liaquat\Documents\GitHub\mliaquat-85\test\test\TerminateApps\TerminateApps\bin\Debug\TerminateApps.exe
+C:\Users\Liaquat\Documents\GitHub\mliaquat-85\test\test\TerminateApps\TerminateApps\bin\Debug\TerminateApps.pdb
+C:\Users\Liaquat\Documents\GitHub\mliaquat-85\test\test\TerminateApps\TerminateApps\obj\Debug\TerminateApps.csprojResolveAssemblyReference.cache
+C:\Users\Liaquat\Documents\GitHub\mliaquat-85\test\test\TerminateApps\TerminateApps\obj\Debug\TerminateApps.exe
+C:\Users\Liaquat\Documents\GitHub\mliaquat-85\test\test\TerminateApps\TerminateApps\obj\Debug\TerminateApps.pdb

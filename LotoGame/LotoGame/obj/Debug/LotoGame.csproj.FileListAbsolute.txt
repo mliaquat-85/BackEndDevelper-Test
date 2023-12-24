@@ -1,0 +1,6 @@
+C:\Users\Liaquat\Documents\GitHub\mliaquat-85\test\test\LotoGame\LotoGame\bin\Debug\LotoGame.exe.config
+C:\Users\Liaquat\Documents\GitHub\mliaquat-85\test\test\LotoGame\LotoGame\obj\Debug\LotoGame.csprojResolveAssemblyReference.cache
+C:\Users\Liaquat\Documents\GitHub\mliaquat-85\test\test\LotoGame\LotoGame\bin\Debug\LotoGame.exe
+C:\Users\Liaquat\Documents\GitHub\mliaquat-85\test\test\LotoGame\LotoGame\bin\Debug\LotoGame.pdb
+C:\Users\Liaquat\Documents\GitHub\mliaquat-85\test\test\LotoGame\LotoGame\obj\Debug\LotoGame.exe
+C:\Users\Liaquat\Documents\GitHub\mliaquat-85\test\test\LotoGame\LotoGame\obj\Debug\LotoGame.pdb
